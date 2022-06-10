@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+
+
 //
 public class Servico {
+
+    //A lista que armazena pacientes
     public ArrayList<Paciente> listaDePacientes = new ArrayList<>();
 
-
+    //metodo para já existir pacientes no array cadastrados
     public void pacientesJaCadastrados() {
         Paciente paciente1 = new Paciente("1", "Jamaica", "02102102136", 01042000, 'M');
         listaDePacientes.add(paciente1);
@@ -39,6 +43,7 @@ public class Servico {
 
     //metodo que lista os pacientes
     public void listarPacientes() {
+        //variavel encontado para informar se foi encontrado ou não, quando o codigo encontra algum paciente vira true
         boolean encontrado = false;
 
         System.out.println("****ESCOLHA UMA OPCAO****\n");
@@ -46,7 +51,7 @@ public class Servico {
         System.out.println("2 - Listagem em ordem alfabeitca\n");
         System.out.print("Digite a opcao: ");
         opc = scan.nextInt();
-
+        //opc é igual a 1 ele lista os pacientes sem ordemn
         if (opc == 1) {
             for (int i = 0; i < listaDePacientes.size(); i++) {
 
@@ -56,7 +61,9 @@ public class Servico {
                 encontrado = true;
 
             }
+            //se opc igual a 2 implementamos o metodo de ordenar sor para ordenar em ordem alfabetica
         } else if (opc == 2) {
+
             Collections.sort(listaDePacientes);
 
             for (int i = 0; i < listaDePacientes.size(); i++) {
@@ -76,7 +83,7 @@ public class Servico {
             System.out.println("********************************\n");
         }
     }
-
+//metodo de buscar quando atribuido algum valor a "identificador" pecorre o arraylist e comparando com equals pra saber se é igual
     public void buscarPacientes(String identificador) {
         boolean encontrado = false;
         for (int i = 0; i < listaDePacientes.size(); i++) {
@@ -87,11 +94,12 @@ public class Servico {
                 encontrado = true;
             }
         }
+        //se não encontrar ele continua encontrado continua false entrando no if
         if (!encontrado) {
             System.out.println("Nao encontrado!");
         }
     }
-
+//apresenta o mesmo metodo de busca com interfação textual de edicao
     public void editarPacientes(String idenficador) {
         boolean encontrado = false;
         for (int i = 0; i < listaDePacientes.size(); i++) {
@@ -114,6 +122,7 @@ public class Servico {
 
                     switch (opc) {
                         case 1:
+                        //puxa o nome do paciente no arraylist e seta um novo
                             System.out.println("Nome atual = " + listaDePacientes.get(i).getNome());
                             System.out.println("Digite o novo Nome: ");
                             String novoNome = scan.next();
@@ -125,6 +134,7 @@ public class Servico {
                             System.out.println("=============================\n");
                             break;
                         case 2:
+                        //puxa o cpf do paciente no arraylist e seta um novo
                             System.out.println("Digite o novo Cpf: ");
                             String novoCpf = scan.next();
                             listaDePacientes.get(i).setCpf(novoCpf);
@@ -134,6 +144,7 @@ public class Servico {
                             System.out.println("=============================\n");
                             break;
                         case 3:
+                        //puxa a data de nascimento do paciente no arraylist e seta uma nova
                             System.out.println("Digite a nova Data de Nascimento: ");
                             int novaDataDeNascimento = scan.nextInt();
                             listaDePacientes.get(i).setDataNascimento(novaDataDeNascimento);
@@ -143,6 +154,7 @@ public class Servico {
                             System.out.println("=============================\n");
                             break;
                         case 4:
+                        //puxa o sexo de paciente e seta um novo
                             System.out.println("Digite o novo sexo: ");
                             char novoSexo = scan.next().charAt(0);
                             listaDePacientes.get(i).setSexo(novoSexo);
@@ -152,11 +164,13 @@ public class Servico {
                             System.out.println("=============================");
                             break;
                         case 5:
+                        //Pergunta se quer excluir o paciente se "sim", exclui e retorna, se "não" volta pro metodo editar
                             System.out.println("Quer realmente excluir o paciente?");
                             String decisao = scan.next();
                             if (decisao.equals("sim")) {
                                 listaDePacientes.remove(listaDePacientes.get(i));
-                                break;
+                                
+                                return;
                             } else if (decisao.equals("nao")) {
                                 break;
                             }

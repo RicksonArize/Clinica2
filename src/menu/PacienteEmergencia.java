@@ -1,15 +1,20 @@
 package menu;
 
+
+//Classe filha de Paciente
 public final class PacienteEmergencia extends Paciente {
+    //Atributos da classe
     private static String prioridade;
     private String ocorrencia;
 
+//construtor da classe chamando os atributos da classe mãe
     public PacienteEmergencia(String idPaciente, String nome, String cpf, int dataNascimento, char sexo, String prioridade, String ocorrencia) {
         super(idPaciente, nome, cpf, dataNascimento, sexo);
         this.prioridade = prioridade;
         this.ocorrencia = ocorrencia;
     }
 
+    //metodo para estatico para feito com um switch para retornar o valor de "prioridade"
     public static String getPrioridade(int valor) {
         switch (valor) {
             case 1:
@@ -31,7 +36,7 @@ public final class PacienteEmergencia extends Paciente {
         return prioridade;
     }
 
-
+    //Metodo para imprimir as informacoes de pacienteEmergencia
     public void imprimirPacientes() {
         System.out.println("Identificacao = " + idPaciente);
         System.out.println("Nome = " + nome);
